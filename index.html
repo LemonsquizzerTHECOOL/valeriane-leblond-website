@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valériane Leblond - Artist</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valériane Leblond</title>
+  <link rel="stylesheet" href="assets/styles.css"/>
 </head>
 <body>
-  <header>
-    <h1 data-lang="en">Valériane Leblond</h1>
-    <h1 data-lang="fr" style="display:none;">Valériane Leblond (Français)</h1>
-    <h1 data-lang="cy" style="display:none;">Valériane Leblond (Cymraeg)</h1>
-    
-    <div class="language-dropdown">
-      <button id="language-btn">Language ▼</button>
-      <ul id="language-menu">
-        <li><a href="#" onclick="setLanguage('en')">English</a></li>
-        <li><a href="#" onclick="setLanguage('fr')">Français</a></li>
-        <li><a href="#" onclick="setLanguage('cy')">Cymraeg</a></li>
-      </ul>
-    </div>
 
-    <nav>
-      <ul>
-        <li><a href="index.html" data-lang="en">Home</a></li>
-        <li><a href="books.html" data-lang="en">Books</a></li>
-        <li><a href="gallery.html" data-lang="en">Gallery</a></li>
-        <li><a href="contact.html" data-lang="en">Contact</a></li>
-      </ul>
-    </nav>
+  <header>
+    <div class="container">
+      <h1>Valériane Leblond</h1>
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="books.html" class="nav-link">Books</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="language-select">
+        <button id="language-btn">
+          English <span class="arrow">▼</span>
+        </button>
+        <ul id="language-menu" class="hidden">
+          <li onclick="setLanguage('en')">English</li>
+          <li onclick="setLanguage('fr')">Français</li>
+          <li onclick="setLanguage('cy')">Cymraeg</li>
+        </ul>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2 data-lang="en">About Valériane</h2>
-      <h2 data-lang="fr" style="display:none;">À propos de Valériane</h2>
-      <h2 data-lang="cy" style="display:none;">Am Valériane</h2>
-      <p data-lang="en">Valériane Leblond is a French artist who has lived in Wales since 2007, blending traditional folk elements with the natural beauty of the Welsh landscape.</p>
-      <p data-lang="fr" style="display:none;">Valériane Leblond est une artiste française qui vit au Pays de Galles depuis 2007, mélangeant des éléments traditionnels du folklore avec la beauté naturelle du paysage gallois.</p>
-      <p data-lang="cy" style="display:none;">Mae Valériane Leblond yn artist Ffrangeg sydd wedi byw yng Nghymru ers 2007, yn cyfuno elfennau traddodiadol y gwerin gyda harddwch naturiol dirwedd Cymru.</p>
+    <section class="hero">
+      <h2 data-lang="en">Welcome to the official website of Valériane Leblond</h2>
+      <h2 data-lang="fr" style="display: none;">Bienvenue sur le site officiel de Valériane Leblond</h2>
+      <h2 data-lang="cy" style="display: none;">Croeso i wefan swyddogol Valériane Leblond</h2>
+      <p data-lang="en">Valériane is a French artist and illustrator based in Wales. Discover her artwork, books, and exhibitions.</p>
+      <p data-lang="fr" style="display: none;">Valériane est une artiste et illustratrice française basée au Pays de Galles. Découvrez ses œuvres, livres et expositions.</p>
+      <p data-lang="cy" style="display: none;">Mae Valériane yn artist ac yn ddarlunydd o Ffrainc sy'n byw yng Nghymru. Darganfyddwch ei chelf, llyfrau ac arddangosfeydd.</p>
     </section>
   </main>
 
   <footer>
-    <p>Contact: <a href="mailto:contact@valeriane-leblond.eu">contact@valeriane-leblond.eu</a></p>
+    <p>© 2025 Valériane Leblond — All rights reserved.</p>
   </footer>
 
   <script src="scripts/main.js"></script>
