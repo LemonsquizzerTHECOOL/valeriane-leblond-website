@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Valériane Leblond</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – Valériane Leblond</title>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
   <header>
-    <h
-::contentReference[oaicite:3]{index=3}
- 
+    <div class="container">
+      <h1>Valériane Leblond</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="books.html" class="nav-link">Books</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="language-select">
+        <button id="language-btn">Language <span class="arrow">▼</span></button>
+        <ul id="language-menu" class="hidden">
+          <li onclick="setLanguage('en')">English</li>
+          <li onclick="setLanguage('fr')">Français</li>
+          <li onclick="setLanguage('cy')">Cymraeg</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <h2 data-lang="en">Contact Valériane</h2>
+      <h2 data-lang="fr" style="display: none;">Contacter Valériane</h2>
+      <h2 data-lang="cy" style="display: none;">Cysylltu â Valériane</h2>
+
+      <p data-lang="en">If you'd like to get in touch for illustration work, books, or other inquiries, feel free to send an email:</p>
+      <p data-lang="fr" style="display: none;">Si vous souhaitez la contacter pour une illustration, des livres ou d'autres demandes, n'hésitez pas à envoyer un e-mail :</p>
+      <p data-lang="cy" style="display: none;">Os hoffech gysylltu ynglŷn ag arlunio, llyfrau neu ymholiadau eraill, anfonwch e-bost:</p>
+
+      <p class="email"><a href="mailto:valerianeleblond@gmail.com">valerianeleblond@gmail.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Valériane Leblond — All rights reserved.</p>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
