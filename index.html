@@ -8,16 +8,10 @@
 </head>
 <body>
   <header>
-    <h1>Valériane Leblond</h1>
-    <p>French-born artist living in Wales, blending folk traditions with the Welsh landscape.</p>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="books.html">Books</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <h1 data-lang="en">Valériane Leblond</h1>
+    <h1 data-lang="fr" style="display:none;">Valériane Leblond (Français)</h1>
+    <h1 data-lang="cy" style="display:none;">Valériane Leblond (Cymraeg)</h1>
+    
     <div class="language-dropdown">
       <button id="language-btn">Language ▼</button>
       <ul id="language-menu">
@@ -26,21 +20,32 @@
         <li><a href="#" onclick="setLanguage('cy')">Cymraeg</a></li>
       </ul>
     </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" data-lang="en">Home</a></li>
+        <li><a href="books.html" data-lang="en">Books</a></li>
+        <li><a href="gallery.html" data-lang="en">Gallery</a></li>
+        <li><a href="contact.html" data-lang="en">Contact</a></li>
+      </ul>
+    </nav>
   </header>
+
   <main>
     <section>
-      <h2>About Valériane</h2>
-      <p>Valériane Leblond is a French artist who has lived in Wales since 2007. She paints on wood, creating images of rural landscapes and coastal villages. Her work is influenced by folk traditions and the stories of rural Wales.</p>
-    </section>
-    <section>
-      <h2>Latest Work</h2>
-      <p>Explore Valériane's latest exhibitions and projects.</p>
-      <!-- Add links or previews of recent works -->
+      <h2 data-lang="en">About Valériane</h2>
+      <h2 data-lang="fr" style="display:none;">À propos de Valériane</h2>
+      <h2 data-lang="cy" style="display:none;">Am Valériane</h2>
+      <p data-lang="en">Valériane Leblond is a French artist who has lived in Wales since 2007, blending traditional folk elements with the natural beauty of the Welsh landscape.</p>
+      <p data-lang="fr" style="display:none;">Valériane Leblond est une artiste française qui vit au Pays de Galles depuis 2007, mélangeant des éléments traditionnels du folklore avec la beauté naturelle du paysage gallois.</p>
+      <p data-lang="cy" style="display:none;">Mae Valériane Leblond yn artist Ffrangeg sydd wedi byw yng Nghymru ers 2007, yn cyfuno elfennau traddodiadol y gwerin gyda harddwch naturiol dirwedd Cymru.</p>
     </section>
   </main>
+
   <footer>
     <p>Contact: <a href="mailto:contact@valeriane-leblond.eu">contact@valeriane-leblond.eu</a></p>
   </footer>
+
   <script src="scripts/main.js"></script>
 </body>
 </html>
