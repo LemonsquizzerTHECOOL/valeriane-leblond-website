@@ -7,5 +7,25 @@ document.getElementById('language-btn').addEventListener('click', function () {
 
 // Language change function
 function setLanguage(language) {
-  alert(`Language changed to ${language}`);
+  // Hide all content first
+  const elements = document.querySelectorAll('[data-lang]');
+  elements.forEach(function (el) {
+    el.style.display = 'none';
+  });
+
+  // Show content for the selected language
+  const selectedElements = document.querySelectorAll('[data-lang=' + language + ']');
+  selectedElements.forEach(function (el) {
+    el.style.display = 'block';
+  });
+
+  // Update the language dropdown button text
+  const button = document.getElementById('language-btn');
+  if (language === 'en') {
+    button.textContent = 'Language ▼';
+  } else if (language === 'fr') {
+    button.textContent = 'Langue ▼';
+  } else if (language === 'cy') {
+    button.textContent = 'Iaith ▼';
+  }
 }
