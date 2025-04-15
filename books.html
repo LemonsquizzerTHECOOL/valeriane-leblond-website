@@ -1,46 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Books by Valériane Leblond</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Books – Valériane Leblond</title>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
   <header>
-    <h1>Books by Valériane Leblond</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="books.html">Books</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <h1>Valériane Leblond</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="books.html" class="nav-link">Books</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="language-select">
+        <button id="language-btn">Language <span class="arrow">▼</span></button>
+        <ul id="language-menu" class="hidden">
+          <li onclick="setLanguage('en')">English</li>
+          <li onclick="setLanguage('fr')">Français</li>
+          <li onclick="setLanguage('cy')">Cymraeg</li>
+        </ul>
+      </div>
+    </div>
   </header>
+
   <main>
     <section>
-      <h2>Featured Books</h2>
-      <ul>
+      <h2 data-lang="en">Books by Valériane</h2>
+      <h2 data-lang="fr" style="display: none;">Livres de Valériane</h2>
+      <h2 data-lang="cy" style="display: none;">Llyfrau gan Valériane</h2>
+
+      <p data-lang="en">Here are some books Valériane has illustrated:</p>
+      <p data-lang="fr" style="display: none;">Voici quelques livres illustrés par Valériane :</p>
+      <p data-lang="cy" style="display: none;">Dyma rai llyfrau mae Valériane wedi eu darlunio:</p>
+
+      <ul class="book-list">
         <li>
-          <h3>The Quilt</h3>
-          <p>A beautifully illustrated storybook.</p>
+          <strong>The Quilt</strong> – Valériane Leblond<br/>
+          <span data-lang="en">A beautifully illustrated story of migration and homesickness, reflecting the Welsh concept of 'hiraeth'.</span>
+          <span data-lang="fr" style="display: none;">Une histoire magnifiquement illustrée sur la migration et le mal du pays, reflétant le concept gallois de 'hiraeth'.</span>
+          <span data-lang="cy" style="display: none;">Stori wedi'i darlunio'n hyfryd am ymfudo a hiraeth, yn adlewyrchu'r cysyniad Cymraeg o 'hiraeth'.</span>
         </li>
         <li>
-          <h3>Little Honey Bee</h3>
-          <p>A charming tale for young readers.</p>
+          <strong>Pedair Cainc y Mabinogi</strong> – Siân Lewis<br/>
+          <span data-lang="en">An illustrated retelling of the Four Branches of the Mabinogi, a cornerstone of Welsh mythology.</span>
+          <span data-lang="fr" style="display: none;">Une réinterprétation illustrée des Quatre Branches du Mabinogi, un pilier de la mythologie galloise.</span>
+          <span data-lang="cy" style="display: none;">Ailadroddiad darluniadol o Bedair Cainc y Mabinogi, carreg sylfaen mytholeg Cymru.</span>
         </li>
         <li>
-          <h3>Wales on the Map</h3>
-          <p>An illustrated guide to the landscapes of Wales.</p>
+          <strong>Cymru ar y Map</strong> – Elin Meek<br/>
+          <span data-lang="en">A lavishly illustrated picture atlas showcasing the best Wales has to offer.</span>
+          <span data-lang="fr" style="display: none;">Un atlas illustré somptueux mettant en valeur le meilleur du Pays de Galles.</span>
+          <span data-lang="cy" style="display: none;">Atlas lluniau wedi'i ddarlunio'n wych yn dangos gorau Cymru.</span>
         </li>
-        <!-- Add more books as needed -->
+        <li>
+          <strong>Little Honey Bee</strong> – Caryl Lewis<br/>
+          <span data-lang="en">A charming story about a little honey bee's adventures, brought to life with delightful illustrations.</span>
+          <span data-lang="fr" style="display: none;">Une histoire charmante sur les aventures d'une petite abeille, animée par des illustrations délicieuses.</span>
+          <span data-lang="cy" style="display: none;">Stori hyfryd am anturiaethau gwenynen fach, wedi'i dod i fywyd gyda darluniau hyfryd.</span>
+        </li>
+        <li>
+          <strong>Pawb a Phopeth</strong> – Elin Meek<br/>
+          <span data-lang="en">A bilingual picture dictionary introducing children to Welsh vocabulary through engaging illustrations.</span>
+          <span data-lang="fr" style="display: none;">Un dictionnaire illustré bilingue introduisant les enfants au vocabulaire gallois à travers des illustrations engageantes.</span>
+          <span data-lang="cy" style="display: none;">Geiriadur lluniau dwyieithog yn cyflwyno plant i eirfa Gymraeg trwy ddarluniau deniadol.</span>
+        </li>
       </ul>
     </section>
   </main>
+
   <footer>
-    <p>Contact: <a href="mailto:contact@valeriane-leblond.eu">contact@valeriane-leblond.eu</a></p>
+    <p>© 2025 Valériane Leblond — All rights reserved.</p>
   </footer>
+
   <script src="scripts/main.js"></script>
 </body>
 </html>
