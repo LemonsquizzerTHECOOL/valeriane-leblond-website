@@ -1,31 +1,32 @@
-// Dropdown functionality for language selection
-document.getElementById('language-btn').addEventListener('click', function () {
-  const menu = document.getElementById('language-menu');
-  menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-  this.closest('.language-dropdown').classList.toggle('open');
+const langBtn = document.getElementById("language-btn");
+const langMenu = document.getElementById("language-menu");
+
+langBtn.addEventListener("click", () => {
+  const isOpen = langMenu.style.display === "block";
+  langMenu.style.display = isOpen ? "none" : "block";
+  langBtn.parentElement.classList.toggle("open", !isOpen);
 });
 
-// Language change function
-function setLanguage(language) {
-  // Hide all content first
-  const elements = document.querySelectorAll('[data-lang]');
-  elements.forEach(function (el) {
-    el.style.display = 'none';
+function setLanguage(lang) {
+  // Hide all language-specific content
+  document.querySelectorAll("[data-lang]").forEach((el) => {
+    el.style.display = "none";
   });
 
-  // Show content for the selected language
-  const selectedElements = document.querySelectorAll('[data-lang=' + language + ']');
-  selectedElements.forEach(function (el) {
-    el.style.display = 'block';
+  // Show only selected language content
+  document.querySelectorAll(`[data-lang="${lang}"]`).forEach((el) => {
+    el.style.display = "block";
   });
 
-  // Update the language dropdown button text
-  const button = document.getElementById('language-btn');
-  if (language === 'en') {
-    button.textContent = 'Language ▼';
-  } else if (language === 'fr') {
-    button.textContent = 'Langue ▼';
-  } else if (language === 'cy') {
-    button.textContent = 'Iaith ▼';
-  }
+  // Change button label
+  let label;
+  if (lang === "en") label = "Language";
+  if (lang === "fr") label = "Langue";
+  if (lang === "cy") label = "Iaith";
+
+  langBtn.innerHTML = `${label} <span class="arrow">▼</span>`;
+
+  // Close the menu
+  langMenu.style.display = "none";
+  langBtn.parentElement.classList.remove("open");
 }
