@@ -128,7 +128,6 @@
       applyLanguage(lang);
       document.getElementById("languageDropdown").classList.remove("open");
 
-      // Update the language button label to reflect the selected language
       const languageLabels = {
         en: "English",
         fr: "Français",
@@ -168,11 +167,9 @@
       }
     });
 
-    // Apply saved language on load
     window.addEventListener("DOMContentLoaded", () => {
       const savedLang = localStorage.getItem("language") || "en";
       applyLanguage(savedLang);
-      // Update the dropdown button to show the saved language
       const languageLabels = {
         en: "English",
         fr: "Français",
