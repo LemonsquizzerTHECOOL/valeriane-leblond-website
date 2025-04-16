@@ -73,25 +73,24 @@
     .language-dropdown.open .language-options {
       display: flex;
     }
-    .books {
+    .hero {
       padding: 2rem;
+      text-align: center;
     }
     .book-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
     }
-    .book {
+    .book-item {
       text-align: center;
     }
-    .book img {
-      max-width: 100%;
+    .book-item img {
+      width: 100%;
       height: auto;
-      border-radius: 8px;
-    }
-    .book-title {
-      margin-top: 0.5rem;
-      font-weight: bold;
+      border: 2px solid #444;
+      border-radius: 5px;
     }
     footer {
       background-color: #222;
@@ -122,40 +121,26 @@
       </div>
     </nav>
   </header>
-  <main class="books">
-    <h1 id="booksTitle">Books by Valériane Leblond</h1>
-    <div class="book-grid">
-      <div class="book">
-        <a href="https://example.com/ceri-deri" target="_blank">
-          <img src="images/ceri-and-deri.jpg" alt="Ceri and Deri" />
-          <div class="book-title">Ceri and Deri</div>
-        </a>
+  <main>
+    <section class="hero">
+      <h1 id="pageTitle">Books by Valériane Leblond</h1>
+      <p id="pageText">
+        Explore the collection of books written and illustrated by Valériane Leblond. Each book blends storytelling and stunning artwork to bring unique worlds to life.
+      </p>
+    </section>
+    <section class="book-grid">
+      <div class="book-item">
+        <img src="book1.jpg" alt="Book 1" />
+        <h3>Book Title 1</h3>
+        <a href="https://www.amazon.com" target="_blank">Buy on Amazon</a>
       </div>
-      <div class="book">
-        <a href="https://example.com/owain-glyndwr" target="_blank">
-          <img src="images/owain-glyndwr.jpg" alt="Owain Glyndŵr" />
-          <div class="book-title">Owain Glyndŵr</div>
-        </a>
+      <div class="book-item">
+        <img src="book2.jpg" alt="Book 2" />
+        <h3>Book Title 2</h3>
+        <a href="https://www.amazon.com" target="_blank">Buy on Amazon</a>
       </div>
-      <div class="book">
-        <a href="https://example.com/hosanau-sion-corn" target="_blank">
-          <img src="images/hosanau-sion-corn.jpg" alt="Hosanau Siôn Corn" />
-          <div class="book-title">Hosanau Siôn Corn</div>
-        </a>
-      </div>
-      <div class="book">
-        <a href="https://example.com/hen-blant-y-byd" target="_blank">
-          <img src="images/hen-blant-y-byd.jpg" alt="Hen Blant y Byd" />
-          <div class="book-title">Hen Blant y Byd</div>
-        </a>
-      </div>
-      <div class="book">
-        <a href="https://example.com/trysorfa-llanwnog" target="_blank">
-          <img src="images/trysorfa-llanwnog.jpg" alt="Trysorfa Llanwnog" />
-          <div class="book-title">Trysorfa Llanwnog</div>
-        </a>
-      </div>
-    </div>
+      <!-- Add more books here as needed -->
+    </section>
   </main>
   <footer>
     <p>&copy; 2025 Valériane Leblond</p>
@@ -173,12 +158,24 @@
     }
 
     function applyLanguage(lang) {
-      const bookTitles = {
-        en: "Books by Valériane Leblond",
-        fr: "Livres de Valériane Leblond",
-        cy: "Llyfrau gan Valériane Leblond"
+      const texts = {
+        en: {
+          title: "Books by Valériane Leblond",
+          text: "Explore the collection of books written and illustrated by Valériane Leblond. Each book blends storytelling and stunning artwork to bring unique worlds to life.",
+        },
+        fr: {
+          title: "Livres de Valériane Leblond",
+          text: "Explorez la collection de livres écrits et illustrés par Valériane Leblond. Chaque livre mêle narration et art époustouflant pour donner vie à des mondes uniques.",
+        },
+        cy: {
+          title: "Llyfrau gan Valériane Leblond",
+          text: "Archwiliwch y casgliad o lyfrau a ysgrifennwyd ac a darlunwyd gan Valériane Leblond. Mae pob llyfr yn cyfuno stori a gwaith celf godidog i ddod â bydau unigryw i'r bywyd.",
+        },
       };
-      document.getElementById("booksTitle").innerText = bookTitles[lang] || bookTitles.en;
+
+      const selected = texts[lang] || texts["en"];
+      document.getElementById("pageTitle").innerText = selected.title;
+      document.getElementById("pageText").innerText = selected.text;
     }
 
     document.addEventListener("click", function (event) {
@@ -188,6 +185,7 @@
       }
     });
 
+    // Apply saved language on load
     window.addEventListener("DOMContentLoaded", () => {
       const savedLang = localStorage.getItem("language") || "en";
       applyLanguage(savedLang);
