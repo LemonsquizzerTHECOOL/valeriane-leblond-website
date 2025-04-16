@@ -2,82 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Books – Valériane Leblond</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books | Valériane Leblond</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      padding: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .language-button {
+      background: #444;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .language-button .arrow {
+      transition: transform 0.3s ease;
+    }
+    .language-dropdown.open .arrow {
+      transform: rotate(180deg);
+    }
+    .language-options {
+      position: absolute;
+      background-color: #333;
+      border: 1px solid #555;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      z-index: 1000;
+    }
+    .language-options button {
+      padding: 0.5rem;
+      background: none;
+      color: white;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .language-options button:hover {
+      background-color: #555;
+    }
+    .language-dropdown.open .language-options {
+      display: flex;
+    }
+    .books {
+      padding: 2rem;
+    }
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+    .book {
+      text-align: center;
+    }
+    .book img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .book-title {
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Valériane Leblond</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="books.html" class="nav-link">Books</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="language-select">
-        <button id="language-btn">Language <span class="arrow">▼</span></button>
-        <ul id="language-menu" class="hidden">
-          <li onclick="setLanguage('en')">English</li>
-          <li onclick="setLanguage('fr')">Français</li>
-          <li onclick="setLanguage('cy')">Cymraeg</li>
-        </ul>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="language-dropdown" id="languageDropdown">
+        <button class="language-button" onclick="toggleDropdown()">
+          <span id="langLabel">Language</span> <span class="arrow">▼</span>
+        </button>
+        <div class="language-options">
+          <button onclick="selectLanguage('en')">English</button>
+          <button onclick="selectLanguage('fr')">Français</button>
+          <button onclick="selectLanguage('cy')">Cymraeg</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="books">
+    <h1 id="booksTitle">Books by Valériane Leblond</h1>
+    <div class="book-grid">
+      <div class="book">
+        <a href="https://example.com/ceri-deri" target="_blank">
+          <img src="images/ceri-and-deri.jpg" alt="Ceri and Deri" />
+          <div class="book-title">Ceri and Deri</div>
+        </a>
+      </div>
+      <div class="book">
+        <a href="https://example.com/owain-glyndwr" target="_blank">
+          <img src="images/owain-glyndwr.jpg" alt="Owain Glyndŵr" />
+          <div class="book-title">Owain Glyndŵr</div>
+        </a>
+      </div>
+      <div class="book">
+        <a href="https://example.com/hosanau-sion-corn" target="_blank">
+          <img src="images/hosanau-sion-corn.jpg" alt="Hosanau Siôn Corn" />
+          <div class="book-title">Hosanau Siôn Corn</div>
+        </a>
+      </div>
+      <div class="book">
+        <a href="https://example.com/hen-blant-y-byd" target="_blank">
+          <img src="images/hen-blant-y-byd.jpg" alt="Hen Blant y Byd" />
+          <div class="book-title">Hen Blant y Byd</div>
+        </a>
+      </div>
+      <div class="book">
+        <a href="https://example.com/trysorfa-llanwnog" target="_blank">
+          <img src="images/trysorfa-llanwnog.jpg" alt="Trysorfa Llanwnog" />
+          <div class="book-title">Trysorfa Llanwnog</div>
+        </a>
       </div>
     </div>
-  </header>
-
-  <main>
-    <section>
-      <h2 data-lang="en">Books by Valériane</h2>
-      <h2 data-lang="fr" style="display: none;">Livres de Valériane</h2>
-      <h2 data-lang="cy" style="display: none;">Llyfrau gan Valériane</h2>
-
-      <p data-lang="en">Here are some books Valériane has illustrated:</p>
-      <p data-lang="fr" style="display: none;">Voici quelques livres illustrés par Valériane :</p>
-      <p data-lang="cy" style="display: none;">Dyma rai llyfrau mae Valériane wedi eu darlunio:</p>
-
-      <ul class="book-list">
-        <li>
-          <strong>The Quilt</strong> – Valériane Leblond<br/>
-          <span data-lang="en">A beautifully illustrated story of migration and homesickness, reflecting the Welsh concept of 'hiraeth'.</span>
-          <span data-lang="fr" style="display: none;">Une histoire magnifiquement illustrée sur la migration et le mal du pays, reflétant le concept gallois de 'hiraeth'.</span>
-          <span data-lang="cy" style="display: none;">Stori wedi'i darlunio'n hyfryd am ymfudo a hiraeth, yn adlewyrchu'r cysyniad Cymraeg o 'hiraeth'.</span>
-        </li>
-        <li>
-          <strong>Pedair Cainc y Mabinogi</strong> – Siân Lewis<br/>
-          <span data-lang="en">An illustrated retelling of the Four Branches of the Mabinogi, a cornerstone of Welsh mythology.</span>
-          <span data-lang="fr" style="display: none;">Une réinterprétation illustrée des Quatre Branches du Mabinogi, un pilier de la mythologie galloise.</span>
-          <span data-lang="cy" style="display: none;">Ailadroddiad darluniadol o Bedair Cainc y Mabinogi, carreg sylfaen mytholeg Cymru.</span>
-        </li>
-        <li>
-          <strong>Cymru ar y Map</strong> – Elin Meek<br/>
-          <span data-lang="en">A lavishly illustrated picture atlas showcasing the best Wales has to offer.</span>
-          <span data-lang="fr" style="display: none;">Un atlas illustré somptueux mettant en valeur le meilleur du Pays de Galles.</span>
-          <span data-lang="cy" style="display: none;">Atlas lluniau wedi'i ddarlunio'n wych yn dangos gorau Cymru.</span>
-        </li>
-        <li>
-          <strong>Little Honey Bee</strong> – Caryl Lewis<br/>
-          <span data-lang="en">A charming story about a little honey bee's adventures, brought to life with delightful illustrations.</span>
-          <span data-lang="fr" style="display: none;">Une histoire charmante sur les aventures d'une petite abeille, animée par des illustrations délicieuses.</span>
-          <span data-lang="cy" style="display: none;">Stori hyfryd am anturiaethau gwenynen fach, wedi'i dod i fywyd gyda darluniau hyfryd.</span>
-        </li>
-        <li>
-          <strong>Pawb a Phopeth</strong> – Elin Meek<br/>
-          <span data-lang="en">A bilingual picture dictionary introducing children to Welsh vocabulary through engaging illustrations.</span>
-          <span data-lang="fr" style="display: none;">Un dictionnaire illustré bilingue introduisant les enfants au vocabulaire gallois à travers des illustrations engageantes.</span>
-          <span data-lang="cy" style="display: none;">Geiriadur lluniau dwyieithog yn cyflwyno plant i eirfa Gymraeg trwy ddarluniau deniadol.</span>
-        </li>
-      </ul>
-    </section>
   </main>
-
   <footer>
-    <p>© 2025 Valériane Leblond — All rights reserved.</p>
+    <p>&copy; 2025 Valériane Leblond</p>
   </footer>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("languageDropdown");
+      dropdown.classList.toggle("open");
+    }
 
-  <script src="scripts/main.js"></script>
+    function selectLanguage(lang) {
+      localStorage.setItem("language", lang);
+      applyLanguage(lang);
+      document.getElementById("languageDropdown").classList.remove("open");
+    }
+
+    function applyLanguage(lang) {
+      const bookTitles = {
+        en: "Books by Valériane Leblond",
+        fr: "Livres de Valériane Leblond",
+        cy: "Llyfrau gan Valériane Leblond"
+      };
+      document.getElementById("booksTitle").innerText = bookTitles[lang] || bookTitles.en;
+    }
+
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("languageDropdown");
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("open");
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("language") || "en";
+      applyLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>
