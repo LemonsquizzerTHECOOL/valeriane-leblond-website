@@ -3,50 +3,189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact – Valériane Leblond</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <title>Contact | Valériane Leblond</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      padding: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .language-button {
+      background: #444;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .language-button .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .language-dropdown.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .language-options {
+      position: absolute;
+      background-color: #333;
+      border: 1px solid #555;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .language-options button {
+      padding: 0.5rem;
+      background: none;
+      color: white;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .language-options button:hover {
+      background-color: #555;
+    }
+
+    .language-dropdown.open .language-options {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      padding: 0.75rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Valériane Leblond</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="books.html" class="nav-link">Books</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="language-select">
-        <button id="language-btn">Language <span class="arrow">▼</span></button>
-        <ul id="language-menu" class="hidden">
-          <li onclick="setLanguage('en')">English</li>
-          <li onclick="setLanguage('fr')">Français</li>
-          <li onclick="setLanguage('cy')">Cymraeg</li>
-        </ul>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="language-dropdown" id="languageDropdown">
+        <button class="language-button" onclick="toggleDropdown()">
+          <span id="langLabel">Language</span> <span class="arrow">▼</span>
+        </button>
+        <div class="language-options">
+          <button onclick="selectLanguage('en')">English</button>
+          <button onclick="selectLanguage('fr')">Français</button>
+          <button onclick="selectLanguage('cy')">Cymraeg</button>
+        </div>
       </div>
-    </div>
+    </nav>
   </header>
 
   <main>
-    <section class="contact-section">
-      <h2 data-lang="en">Contact Valériane</h2>
-      <h2 data-lang="fr" style="display: none;">Contacter Valériane</h2>
-      <h2 data-lang="cy" style="display: none;">Cysylltu â Valériane</h2>
+    <h1 id="contactTitle">Contact Valériane Leblond</h1>
+    <p id="contactDesc">
+      For commissions, collaborations, or just to say hello, feel free to use the form below.
+    </p>
 
-      <p data-lang="en">If you'd like to get in touch for illustration work, books, or other inquiries, feel free to send an email:</p>
-      <p data-lang="fr" style="display: none;">Si vous souhaitez la contacter pour une illustration, des livres ou d'autres demandes, n'hésitez pas à envoyer un e-mail :</p>
-      <p data-lang="cy" style="display: none;">Os hoffech gysylltu ynglŷn ag arlunio, llyfrau neu ymholiadau eraill, anfonwch e-bost:</p>
+    <!-- ✅ Formspree contact form -->
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="_replyto" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
 
-      <p class="email"><a href="mailto:valerianeleblond@gmail.com">valerianeleblond@gmail.com</a></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Valériane Leblond — All rights reserved.</p>
-  </footer>
-
-  <script src="scripts/main.js"></script>
-</body>
-</html>
+    <section style="text-align: center; margin-top: 2rem;">
+      <p id="contactAlt">Or contact me on:</p>
+      <div class="social-links">
+        <a href="https://instagram.com/valeriane.leblond" target="_blank" style="color: #e1306c;">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 2 .2 2.5.4.6.2 1 .4 1.4.9s.7.8.9 1.4c.2.5.3 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 2-.4 2.5-.2.6-.4 1-.9 1.4s-.8.7-1.4.9c-.5.2-1.3.3-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-2-.2-2.5-.4-.6-.2-1-.4-1.4-.9s-.7-.8-.9-1.4c-.2-.5-.3-1.3-.4-2.5C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-2 .4-2.5.2-.6.4-1 .9-1.4s.8-.7 1.4-.9c.5-.2 1.3-.3 2.5-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.9.2 4.8.4 4 .8c-.9.4-1.7.9-2.4 1.6C.9 3.9.4 4.7.1 5.6c-.4.9-.6 2-.7 3.2C0 10.1 0 10.5 0 14s0 3.9.1 5.1c.1 1.2.3 2.3.7 3.2.3.9.8 1.7 1.5 2.4.7.7 1.5 1.2 2.4 1.5.9.4 2 .6 3.2.7 1.2.1 1.6.1 5.1.1s3.9 0 5.1-.1c1.2-.1 2.3-.3 3.2-.7.9-.3 1.7-.8 2.4-1.5.7-.7 1.2-1.5 1.5-2.4.4-.9.6-2 .7-3.2.1-1.2.1-1.6.1-5.1s0-3.9-.1-5.1c-.1-1.2-.3-2.3-.7-3.2-.3-.9-.8-1.7-1.5-2.4-.7-.7-1.5-1.2-2.4-1.5-.9-.4-2-.6-3.2-.7C15.9 0 15.5 0 12 0z"/><circle cx="12" cy="12" r="3.2"/><circle cx="18.4" cy="5.6" r="1.2"/></svg>
+          Instagram
+        </a>
+        <a href="https://facebook.com/valeriane.leblond" target="_blank" style="color: #1877f2;">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v
