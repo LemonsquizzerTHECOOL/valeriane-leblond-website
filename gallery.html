@@ -1,14 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Valériane Leblond</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      padding: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .language-button {
+      background: #444;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .language-button .arrow {
+      transition: transform 0.3s ease;
+    }
+    .language-dropdown.open .arrow {
+      transform: rotate(180deg);
+    }
+    .language-options {
+      position: absolute;
+      background-color: #333;
+      border: 1px solid #555;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      z-index: 1000;
+    }
+    .language-options button {
+      padding: 0.5rem;
+      background: none;
+      color: white;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .language-options button:hover {
+      background-color: #555;
+    }
+    .language-dropdown.open .language-options {
+      display: flex;
+    }
+    .gallery {
+      padding: 2rem;
+    }
+    .gallery h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .gallery p {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Gallery</h1>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -16,23 +120,85 @@
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <div class="language-dropdown" id="languageDropdown">
+        <button class="language-button" onclick="toggleDropdown()">
+          <span id="langLabel">Language</span> <span class="arrow">▼</span>
+        </button>
+        <div class="language-options">
+          <button onclick="selectLanguage('en')">English</button>
+          <button onclick="selectLanguage('fr')">Français</button>
+          <button onclick="selectLanguage('cy')">Cymraeg</button>
+        </div>
+      </div>
     </nav>
   </header>
-  <main>
-    <section>
-      <h2>Artwork Collection</h2>
-      <div class="gallery">
-        <!-- Add images of Valériane's artwork -->
-        <img src="assets/images/artwork1.jpg" alt="Artwork 1">
-        <img src="assets/images/artwork2.jpg" alt="Artwork 2">
-        <img src="assets/images/artwork3.jpg" alt="Artwork 3">
-        <!-- Add more images as needed -->
+  <main class="gallery">
+    <h1 id="galleryTitle">Gallery</h1>
+    <p id="galleryDescription">
+      Explore a selection of Valériane Leblond's original artwork, capturing the essence of Welsh landscapes and stories.
+    </p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/artwork1.jpg" alt="Artwork 1" />
       </div>
-    </section>
+      <div class="gallery-item">
+        <img src="images/artwork2.jpg" alt="Artwork 2" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/artwork3.jpg" alt="Artwork 3" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/artwork4.jpg" alt="Artwork 4" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/artwork5.jpg" alt="Artwork 5" />
+      </div>
+      <div class="gallery-item">
+        <img src="images/artwork6.jpg" alt="Artwork 6" />
+      </div>
+      <!-- Add more artwork items as needed -->
+    </div>
   </main>
   <footer>
-    <p>Contact: <a href="mailto:contact@valeriane-leblond.eu">contact@valeriane-leblond.eu</a></p>
+    <p>&copy; 2025 Valériane Leblond</p>
   </footer>
-  <script src="scripts/main.js"></script>
-</body>
-</html>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("languageDropdown");
+      dropdown.classList.toggle("open");
+    }
+
+    function selectLanguage(lang) {
+      localStorage.setItem("language", lang);
+      applyLanguage(lang);
+      document.getElementById("languageDropdown").classList.remove("open");
+    }
+
+    function applyLanguage(lang) {
+      const translations = {
+        en: {
+          galleryTitle: "Gallery",
+          galleryDescription: "Explore a selection of Valériane Leblond's original artwork, capturing the essence of Welsh landscapes and stories.",
+        },
+        fr: {
+          galleryTitle: "Galerie",
+          galleryDescription: "Découvrez une sélection des œuvres originales de Valériane Leblond, capturant l'essence des paysages et des histoires galloises.",
+        },
+        cy: {
+          galleryTitle: "Oriel",
+          galleryDescription: "Archwiliwch ddetholiad o weithiau celf gwreiddiol Valériane Leblond, yn dal hanfod tirweddau a straeon Cymru.",
+        },
+      };
+
+      const selected = translations[lang] || translations["en"];
+      document.getElementById("galleryTitle").innerText = selected.galleryTitle;
+      document.getElementById("galleryDescription").innerText = selected.galleryDescription;
+    }
+
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("languageDropdown");
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("open");
+     
+::contentReference[oaicite:0]{index=0}
+ 
