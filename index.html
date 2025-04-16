@@ -6,11 +6,20 @@
   <title>Home | Valériane Leblond</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* Example of adding custom font 
+    /* @font-face {
+      font-family: 'ValerianeFont';
+      src: url('fonts/ValerianeFont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    } */
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
+
     nav {
       display: flex;
       justify-content: space-between;
@@ -18,6 +27,7 @@
       background-color: #222;
       padding: 1rem;
     }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -25,15 +35,18 @@
       margin: 0;
       padding: 0;
     }
+
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
+
     .language-dropdown {
       position: relative;
       display: inline-block;
     }
+
     .language-button {
       background: #444;
       color: white;
@@ -44,12 +57,15 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     .language-button .arrow {
       transition: transform 0.3s ease;
     }
+
     .language-dropdown.open .arrow {
       transform: rotate(180deg);
     }
+
     .language-options {
       position: absolute;
       background-color: #333;
@@ -59,6 +75,7 @@
       width: 100%;
       z-index: 1000;
     }
+
     .language-options button {
       padding: 0.5rem;
       background: none;
@@ -67,16 +84,50 @@
       text-align: left;
       cursor: pointer;
     }
+
     .language-options button:hover {
       background-color: #555;
     }
+
     .language-dropdown.open .language-options {
       display: flex;
     }
+
     .hero {
       padding: 2rem;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem; /* Space between image and text */
     }
+
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .about-image {
+      width: 300px; /* Adjust the width of the image */
+      height: auto;
+      border-radius: 10px; /* Optional: Adds rounded corners to the image */
+    }
+
+    .about-text {
+      max-width: 600px; /* Adjust the max width of the text area */
+    }
+
+    #aboutTitle {
+      font-family: 'ValerianeFont', sans-serif; /* Apply custom font */
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #aboutText {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
     footer {
       background-color: #222;
       color: white;
@@ -108,10 +159,16 @@
   </header>
   <main>
     <section class="hero">
-      <h1 id="aboutTitle">About Valériane Leblond</h1>
-      <p id="aboutText">
-        Valériane Leblond is a Welsh-based artist and illustrator known for her evocative, detailed artwork that brings stories to life. Her works blend imagination with tradition, capturing the soul of landscapes, people, and tales from Wales and beyond.
-      </p>
+      <div class="about-container">
+        
+        <img src="images/Version_202_20_281_29" alt="Valériane Leblond" class="about-image" />
+        <div class="about-text">
+          <h1 id="aboutTitle">Valériane Leblond</h1>
+          <p id="aboutText">
+            Valériane Leblond is a Welsh-based artist and illustrator known for her evocative, detailed artwork that brings stories to life. Her works blend imagination with tradition, capturing the soul of landscapes, people, and tales from Wales and beyond.
+          </p>
+        </div>
+      </div>
     </section>
   </main>
   <footer>
@@ -127,29 +184,22 @@
       localStorage.setItem("language", lang);
       applyLanguage(lang);
       document.getElementById("languageDropdown").classList.remove("open");
-
-      const languageLabels = {
-        en: "English",
-        fr: "Français",
-        cy: "Cymraeg",
-      };
-      document.getElementById("langLabel").innerText = languageLabels[lang];
     }
 
     function applyLanguage(lang) {
       const aboutTexts = {
         en: {
-          title: "About Valériane Leblond",
+          title: "Valériane Leblond",
           text:
             "Valériane Leblond is a Welsh-based artist and illustrator known for her evocative, detailed artwork that brings stories to life. Her works blend imagination with tradition, capturing the soul of landscapes, people, and tales from Wales and beyond.",
         },
         fr: {
-          title: "À propos de Valériane Leblond",
+          title: "Valériane Leblond",
           text:
             "Valériane Leblond est une artiste et illustratrice basée au Pays de Galles, connue pour son art évocateur et détaillé qui donne vie aux histoires. Ses œuvres mélangent imagination et tradition, capturant l'âme des paysages, des gens et des contes du Pays de Galles et d'ailleurs.",
         },
         cy: {
-          title: "Ynghylch Valériane Leblond",
+          title: "Valériane Leblond",
           text:
             "Mae Valériane Leblond yn artist ac yn ddarlunydd sy'n byw yng Nghymru, ac sy'n adnabyddus am ei gwaith celf manylach a llawn mynegiant sy'n dod â straeon yn fyw. Mae ei gwaith yn cyfuno dychymyg â thraddodiad, gan ddal hanfod tirweddau, pobl a chwedlau o Gymru ac o bell ac agos.",
         },
@@ -167,15 +217,10 @@
       }
     });
 
+    // Apply saved language on load
     window.addEventListener("DOMContentLoaded", () => {
       const savedLang = localStorage.getItem("language") || "en";
       applyLanguage(savedLang);
-      const languageLabels = {
-        en: "English",
-        fr: "Français",
-        cy: "Cymraeg",
-      };
-      document.getElementById("langLabel").innerText = languageLabels[savedLang];
     });
   </script>
 </body>
