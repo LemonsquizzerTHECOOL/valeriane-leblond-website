@@ -73,35 +73,27 @@
     .language-dropdown.open .language-options {
       display: flex;
     }
-    .gallery {
+    .hero {
       padding: 2rem;
-    }
-    .gallery h1 {
       text-align: center;
-      margin-bottom: 1rem;
-    }
-    .gallery p {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 2rem;
     }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1rem;
+      padding: 2rem;
     }
     .gallery-item {
-      overflow: hidden;
-      border-radius: 8px;
+      text-align: center;
+      border: 2px solid #444;
+      padding: 1rem;
+      border-radius: 5px;
+      background-color: #f4f4f4;
     }
     .gallery-item img {
       width: 100%;
       height: auto;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.05);
+      border-radius: 5px;
     }
     footer {
       background-color: #222;
@@ -132,32 +124,29 @@
       </div>
     </nav>
   </header>
-  <main class="gallery">
-    <h1 id="galleryTitle">Gallery</h1>
-    <p id="galleryDescription">
-      Explore a selection of Valériane Leblond's original artwork, capturing the essence of Welsh landscapes and stories.
-    </p>
-    <div class="gallery-grid">
+  <main>
+    <section class="hero">
+      <h1 id="galleryTitle">Gallery of Artwork by Valériane Leblond</h1>
+      <p id="galleryText">
+        Explore the original artwork created by Valériane Leblond, each piece a reflection of her unique vision, blending traditional art techniques with modern inspiration.
+      </p>
+    </section>
+    <section class="gallery-grid">
+      <!-- Example of a single artwork item, repeat for other artworks -->
       <div class="gallery-item">
-        <img src="images/artwork1.jpg" alt="Artwork 1" />
+        <img src="artwork1.jpg" alt="Artwork 1" />
+        <h3>Artwork Title 1</h3>
       </div>
       <div class="gallery-item">
-        <img src="images/artwork2.jpg" alt="Artwork 2" />
+        <img src="artwork2.jpg" alt="Artwork 2" />
+        <h3>Artwork Title 2</h3>
       </div>
       <div class="gallery-item">
-        <img src="images/artwork3.jpg" alt="Artwork 3" />
-      </div>
-      <div class="gallery-item">
-        <img src="images/artwork4.jpg" alt="Artwork 4" />
-      </div>
-      <div class="gallery-item">
-        <img src="images/artwork5.jpg" alt="Artwork 5" />
-      </div>
-      <div class="gallery-item">
-        <img src="images/artwork6.jpg" alt="Artwork 6" />
+        <img src="artwork3.jpg" alt="Artwork 3" />
+        <h3>Artwork Title 3</h3>
       </div>
       <!-- Add more artwork items as needed -->
-    </div>
+    </section>
   </main>
   <footer>
     <p>&copy; 2025 Valériane Leblond</p>
@@ -175,30 +164,38 @@
     }
 
     function applyLanguage(lang) {
-      const translations = {
+      const texts = {
         en: {
-          galleryTitle: "Gallery",
-          galleryDescription: "Explore a selection of Valériane Leblond's original artwork, capturing the essence of Welsh landscapes and stories.",
+          title: "Gallery of Artwork by Valériane Leblond",
+          text: "Explore the original artwork created by Valériane Leblond, each piece a reflection of her unique vision, blending traditional art techniques with modern inspiration.",
         },
         fr: {
-          galleryTitle: "Galerie",
-          galleryDescription: "Découvrez une sélection des œuvres originales de Valériane Leblond, capturant l'essence des paysages et des histoires galloises.",
+          title: "Galerie d'œuvres de Valériane Leblond",
+          text: "Explorez les œuvres originales créées par Valériane Leblond, chaque pièce étant le reflet de sa vision unique, alliant techniques artistiques traditionnelles et inspiration moderne.",
         },
         cy: {
-          galleryTitle: "Oriel",
-          galleryDescription: "Archwiliwch ddetholiad o weithiau celf gwreiddiol Valériane Leblond, yn dal hanfod tirweddau a straeon Cymru.",
+          title: "Oriau Gwaith gan Valériane Leblond",
+          text: "Archwiliwch y gwaith celf gwreiddiol a grëwyd gan Valériane Leblond, pob darn yn adlewyrchu ei gweledigaeth unigryw, yn cyfuno technegau celf traddodiadol â ysbrydoliaeth fodern.",
         },
       };
 
-      const selected = translations[lang] || translations["en"];
-      document.getElementById("galleryTitle").innerText = selected.galleryTitle;
-      document.getElementById("galleryDescription").innerText = selected.galleryDescription;
+      const selected = texts[lang] || texts["en"];
+      document.getElementById("galleryTitle").innerText = selected.title;
+      document.getElementById("galleryText").innerText = selected.text;
     }
 
     document.addEventListener("click", function (event) {
       const dropdown = document.getElementById("languageDropdown");
       if (!dropdown.contains(event.target)) {
         dropdown.classList.remove("open");
-     
-::contentReference[oaicite:0]{index=0}
- 
+      }
+    });
+
+    // Apply saved language on load
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("language") || "en";
+      applyLanguage(savedLang);
+    });
+  </script>
+</body>
+</html>
