@@ -2,53 +2,169 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Valériane Leblond</title>
-  <link rel="stylesheet" href="assets/styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Valériane Leblond</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      padding: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .language-button {
+      background: #444;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .language-button .arrow {
+      transition: transform 0.3s ease;
+    }
+    .language-dropdown.open .arrow {
+      transform: rotate(180deg);
+    }
+    .language-options {
+      position: absolute;
+      background-color: #333;
+      border: 1px solid #555;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      z-index: 1000;
+    }
+    .language-options button {
+      padding: 0.5rem;
+      background: none;
+      color: white;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+    .language-options button:hover {
+      background-color: #555;
+    }
+    .language-dropdown.open .language-options {
+      display: flex;
+    }
+    .hero {
+      padding: 2rem;
+      text-align: center;
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
-
   <header>
-    <div class="container">
-      <h1>Valériane Leblond</h1>
-
-      <nav>
-        <ul>
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="books.html" class="nav-link">Books</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="language-select">
-        <button id="language-btn">
-          English <span class="arrow">▼</span>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="language-dropdown" id="languageDropdown">
+        <button class="language-button" onclick="toggleDropdown()">
+          <span id="langLabel">Language</span> <span class="arrow">▼</span>
         </button>
-        <ul id="language-menu" class="hidden">
-          <li onclick="setLanguage('en')">English</li>
-          <li onclick="setLanguage('fr')">Français</li>
-          <li onclick="setLanguage('cy')">Cymraeg</li>
-        </ul>
+        <div class="language-options">
+          <button onclick="selectLanguage('en')">English</button>
+          <button onclick="selectLanguage('fr')">Français</button>
+          <button onclick="selectLanguage('cy')">Cymraeg</button>
+        </div>
       </div>
-    </div>
+    </nav>
   </header>
-
   <main>
     <section class="hero">
-      <h2 data-lang="en">Welcome to the official website of Valériane Leblond</h2>
-      <h2 data-lang="fr" style="display: none;">Bienvenue sur le site officiel de Valériane Leblond</h2>
-      <h2 data-lang="cy" style="display: none;">Croeso i wefan swyddogol Valériane Leblond</h2>
-      <p data-lang="en">Valériane is a French artist and illustrator based in Wales. Discover her artwork, books, and exhibitions.</p>
-      <p data-lang="fr" style="display: none;">Valériane est une artiste et illustratrice française basée au Pays de Galles. Découvrez ses œuvres, livres et expositions.</p>
-      <p data-lang="cy" style="display: none;">Mae Valériane yn artist ac yn ddarlunydd o Ffrainc sy'n byw yng Nghymru. Darganfyddwch ei chelf, llyfrau ac arddangosfeydd.</p>
+      <h1 id="aboutTitle">About Valériane Leblond</h1>
+      <p id="aboutText">
+        Valériane Leblond is a Welsh-based artist and illustrator known for her evocative, detailed artwork that brings stories to life. Her works blend imagination with tradition, capturing the soul of landscapes, people, and tales from Wales and beyond.
+      </p>
     </section>
   </main>
-
   <footer>
-    <p>© 2025 Valériane Leblond — All rights reserved.</p>
+    <p>&copy; 2025 Valériane Leblond</p>
   </footer>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("languageDropdown");
+      dropdown.classList.toggle("open");
+    }
 
-  <script src="scripts/main.js"></script>
+    function selectLanguage(lang) {
+      localStorage.setItem("language", lang);
+      applyLanguage(lang);
+      document.getElementById("languageDropdown").classList.remove("open");
+    }
+
+    function applyLanguage(lang) {
+      const aboutTexts = {
+        en: {
+          title: "About Valériane Leblond",
+          text:
+            "Valériane Leblond is a Welsh-based artist and illustrator known for her evocative, detailed artwork that brings stories to life. Her works blend imagination with tradition, capturing the soul of landscapes, people, and tales from Wales and beyond.",
+        },
+        fr: {
+          title: "À propos de Valériane Leblond",
+          text:
+            "Valériane Leblond est une artiste et illustratrice basée au Pays de Galles, connue pour son art évocateur et détaillé qui donne vie aux histoires. Ses œuvres mélangent imagination et tradition, capturant l'âme des paysages, des gens et des contes du Pays de Galles et d'ailleurs.",
+        },
+        cy: {
+          title: "Ynghylch Valériane Leblond",
+          text:
+            "Mae Valériane Leblond yn artist ac yn ddarlunydd sy'n byw yng Nghymru, ac sy'n adnabyddus am ei gwaith celf manylach a llawn mynegiant sy'n dod â straeon yn fyw. Mae ei gwaith yn cyfuno dychymyg â thraddodiad, gan ddal hanfod tirweddau, pobl a chwedlau o Gymru ac o bell ac agos.",
+        },
+      };
+
+      const selected = aboutTexts[lang] || aboutTexts["en"];
+      document.getElementById("aboutTitle").innerText = selected.title;
+      document.getElementById("aboutText").innerText = selected.text;
+    }
+
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("languageDropdown");
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("open");
+      }
+    });
+
+    // Apply saved language on load
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("language") || "en";
+      applyLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>
