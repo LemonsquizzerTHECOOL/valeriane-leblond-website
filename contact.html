@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Valériane Leblond</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -11,7 +11,6 @@
       margin: 0;
       padding: 0;
     }
-
     nav {
       display: flex;
       justify-content: space-between;
@@ -19,7 +18,6 @@
       background-color: #222;
       padding: 1rem;
     }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -27,18 +25,15 @@
       margin: 0;
       padding: 0;
     }
-
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
     .language-dropdown {
       position: relative;
       display: inline-block;
     }
-
     .language-button {
       background: #444;
       color: white;
@@ -49,15 +44,12 @@
       align-items: center;
       gap: 0.5rem;
     }
-
     .language-button .arrow {
       transition: transform 0.3s ease;
     }
-
     .language-dropdown.open .arrow {
       transform: rotate(180deg);
     }
-
     .language-options {
       position: absolute;
       background-color: #333;
@@ -67,7 +59,6 @@
       width: 100%;
       z-index: 1000;
     }
-
     .language-options button {
       padding: 0.5rem;
       background: none;
@@ -76,71 +67,61 @@
       text-align: left;
       cursor: pointer;
     }
-
     .language-options button:hover {
       background-color: #555;
     }
-
     .language-dropdown.open .language-options {
       display: flex;
     }
-
     main {
       padding: 2rem;
-      text-align: center;
+      max-width: 700px;
+      margin: auto;
     }
-
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
     form {
-      max-width: 500px;
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-
     input, textarea {
-      padding: 0.75rem;
-      font-size: 1rem;
+      padding: 0.8rem;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 4px;
+      font-size: 1rem;
     }
-
     button[type="submit"] {
-      padding: 0.75rem;
       background-color: #444;
       color: white;
       border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 4px;
       cursor: pointer;
-      border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
-
+    button[type="submit"]:hover {
+      background-color: #666;
+    }
+    .social {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .social a {
+      display: inline-block;
+      margin: 0 0.5rem;
+      color: #444;
+      text-decoration: none;
+    }
     footer {
       background-color: #222;
       color: white;
       text-align: center;
       padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-
-    .social-links a {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    svg {
-      width: 20px;
-      height: 20px;
+      margin-top: 3rem;
     }
   </style>
 </head>
@@ -165,27 +146,86 @@
       </div>
     </nav>
   </header>
-
   <main>
-    <h1 id="contactTitle">Contact Valériane Leblond</h1>
-    <p id="contactDesc">
-      For commissions, collaborations, or just to say hello, feel free to use the form below.
-    </p>
-
-    <!-- ✅ Formspree contact form -->
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="_replyto" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <h1 id="contactTitle">Contact Me</h1>
+    <form onsubmit="sendMail(); return false;">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send</button>
     </form>
+    <div class="social">
+      <p id="socialText">Or contact me on:</p>
+      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.5.5.2.9.5 1.3 1 .4.4.8.8 1 1.3.2.4.4 1 .5 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.5 2.2-.2.5-.5.9-1 1.3-.4.4-.8.8-1.3 1-.4.2-1 .4-2.2.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.5-.5-.2-.9-.5-1.3-1-.4-.4-.8-.8-1-1.3-.2-.4-.4-1-.5-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.5-2.2.2-.5.5-.9 1-1.3.4-.4.8-.8 1.3-1 .4-.2 1-.4 2.2-.5C8.4 2.2 8.8 2.2 12 2.2m0-2.2C8.7 0 8.3 0 7 .1 5.7.2 4.6.5 3.7 1 .9 2.2.2 3.5 0 5.1-.1 6.3-.1 6.7 0 12c.1 5.3.1 5.7.1 6.9.1 1.6.8 2.9 1.8 4 1.1 1.1 2.4 1.7 4 1.8 1.2.1 1.6.1 6.9.1s5.7 0 6.9-.1c1.6-.1 2.9-.8 4-1.8 1.1-1.1 1.7-2.4 1.8-4 .1-1.2.1-1.6.1-6.9s0-5.7-.1-6.9c-.1-1.6-.8-2.9-1.8-4C20.9.5 19.6 0 18 .1 16.8 0 16.3 0 12 0z"/>
+          <path d="M12 5.8A6.2 6.2 0 1 0 18.2 12 6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/>
+          <circle cx="18.4" cy="5.6" r="1.4" />
+        </svg>
+      </a>
+      <a href="mailto:valerianeleblond@gmail.com" aria-label="Email">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Valériane Leblond</p>
+  </footer>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("languageDropdown");
+      dropdown.classList.toggle("open");
+    }
 
-    <section style="text-align: center; margin-top: 2rem;">
-      <p id="contactAlt">Or contact me on:</p>
-      <div class="social-links">
-        <a href="https://instagram.com/valeriane.leblond" target="_blank" style="color: #e1306c;">
-          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 2 .2 2.5.4.6.2 1 .4 1.4.9s.7.8.9 1.4c.2.5.3 1.3.4 2.5.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 2-.4 2.5-.2.6-.4 1-.9 1.4s-.8.7-1.4.9c-.5.2-1.3.3-2.5.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-2-.2-2.5-.4-.6-.2-1-.4-1.4-.9s-.7-.8-.9-1.4c-.2-.5-.3-1.3-.4-2.5C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-2 .4-2.5.2-.6.4-1 .9-1.4s.8-.7 1.4-.9c.5-.2 1.3-.3 2.5-.4C8.4 2.2 8.8 2.2 12 2.2M12 0C8.7 0 8.3 0 7.1.1 5.9.2 4.8.4 4 .8c-.9.4-1.7.9-2.4 1.6C.9 3.9.4 4.7.1 5.6c-.4.9-.6 2-.7 3.2C0 10.1 0 10.5 0 14s0 3.9.1 5.1c.1 1.2.3 2.3.7 3.2.3.9.8 1.7 1.5 2.4.7.7 1.5 1.2 2.4 1.5.9.4 2 .6 3.2.7 1.2.1 1.6.1 5.1.1s3.9 0 5.1-.1c1.2-.1 2.3-.3 3.2-.7.9-.3 1.7-.8 2.4-1.5.7-.7 1.2-1.5 1.5-2.4.4-.9.6-2 .7-3.2.1-1.2.1-1.6.1-5.1s0-3.9-.1-5.1c-.1-1.2-.3-2.3-.7-3.2-.3-.9-.8-1.7-1.5-2.4-.7-.7-1.5-1.2-2.4-1.5-.9-.4-2-.6-3.2-.7C15.9 0 15.5 0 12 0z"/><circle cx="12" cy="12" r="3.2"/><circle cx="18.4" cy="5.6" r="1.2"/></svg>
-          Instagram
-        </a>
-        <a href="https://facebook.com/valeriane.leblond" target="_blank" style="color: #1877f2;">
-          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v
+    function selectLanguage(lang) {
+      localStorage.setItem("language", lang);
+      applyLanguage(lang);
+      document.getElementById("languageDropdown").classList.remove("open");
+    }
+
+    function applyLanguage(lang) {
+      const contactTexts = {
+        en: {
+          title: "Contact Me",
+          social: "Or contact me on:",
+        },
+        fr: {
+          title: "Contactez-moi",
+          social: "Ou contactez-moi sur :",
+        },
+        cy: {
+          title: "Cysylltwch â mi",
+          social: "Neu cysylltwch â mi drwy :",
+        },
+      };
+
+      const selected = contactTexts[lang] || contactTexts["en"];
+      document.getElementById("contactTitle").innerText = selected.title;
+      document.getElementById("socialText").innerText = selected.social;
+    }
+
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("languageDropdown");
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("open");
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("language") || "en";
+      applyLanguage(savedLang);
+    });
+
+    function sendMail() {
+      const name = encodeURIComponent(document.getElementById("name").value);
+      const email = encodeURIComponent(document.getElementById("email").value);
+      const message = encodeURIComponent(document.getElementById("message").value);
+
+      const mailto = `mailto:valerianeleblond@gmail.com?subject=Message from ${name}&body=Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
+      window.location.href = mailto;
+    }
+  </script>
+</body>
+</html>
